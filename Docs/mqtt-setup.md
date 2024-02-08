@@ -6,11 +6,11 @@ Installation mosquitto in terminal:
 
 https://mosquitto.org/download/   
 
-<sudo apt-add-repository ppa:mosquitto-dev/mosquitto-ppa>  
+< sudo apt-add-repository ppa:mosquitto-dev/mosquitto-ppa >  
 
-<sudo apt-get install mosquitto>  
+< sudo apt-get install mosquitto >  
 
-<sudo apt-get install mosquitto-clients> 
+< sudo apt-get install mosquitto-clients > 
 
  
 
@@ -37,7 +37,7 @@ https://test.mosquitto.org/config/  (For another ref. to config)
 After configuring the file:
 ==========================
 
-cmd : sudo mosquitto -c /etc/mosquitto/mosquitto.conf 
+cmd : sudo mosquitto -c /etc/mosquitto/mosquitto.conf  
 
 (Which is used to connected with the remote server (Mobile)) 
 
@@ -45,7 +45,7 @@ we need to give the mosquitto -c config with its < path > to make connection.
 
 In another terminal we need to get subscribe with our topic by using, 
 
-mosquitto_sub -v -t "Topic_name". 
+< mosquitto_sub -v -t "Topic_name" > 
 
  It shows the value that our client sends by using the mobile. 
 
@@ -56,25 +56,24 @@ https://stackoverflow.com/questions/26716279/how-to-test-the-mosquitto-server (R
 My (mosquitto.conf) file: 
 ========================
 
-# Place your local configuration in /etc/mosquitto/conf.d/ 
+( # Place your local configuration in /etc/mosquitto/conf.d/ 
 
-#  
+ #  
 
-# A full description of the configuration file is at 
+ # A full description of the configuration file is at 
 
-# /usr/share/doc/mosquitto/examples/mosquitto.conf.example 
+ # /usr/share/doc/mosquitto/examples/mosquitto.conf.example 
 
-persistence true 
+ persistence true 
 
-persistence_location /var/lib/mosquitto/ 
+ persistence_location /var/lib/mosquitto/ 
 
-log_dest file /var/log/mosquitto/mosquitto.log 
+ log_dest file /var/log/mosquitto/mosquitto.log 
 
-include_dir /etc/mosquitto/conf.d  
+ include_dir /etc/mosquitto/conf.d  
 
-listener 1883          
-
-allow_anonymous true 
+ listener 1883          
+ allow_anonymous true ) 
 
  
 
