@@ -4,6 +4,8 @@
 
 #define ANALOG_PIN A0
 #define LED_PIN 16
+#define LOOP_DELAY_MS 10
+#define TIMEOUT_DELAY_MS 500
 
 const char* ssid = "SSID";
 const char* password = "SSID-Password";
@@ -17,13 +19,13 @@ WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient); 
 
 void setup_wifi() {
-  delay(10); //Initial delay for stability
+  delay(LOOP_DELAY_MS);
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500); // Delay for 500 milliseconds before checking again
+    delay(TIMEOUT_DELAY_MS);
     Serial.print(".");
   }
   Serial.print("IP address: ");
@@ -76,5 +78,5 @@ void loop() {
     digitalWrite(LED_PIN, HIGH); // Turn OFF the LED
   }
   mqttClient.loop();
-  delay(1000); // Delay for 1 second before next iteration
+  delay(1000);
 }
