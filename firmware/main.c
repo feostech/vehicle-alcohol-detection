@@ -6,8 +6,8 @@
 #define LED_PIN 16
 
 const char* ssid = "SSID";
-const char* password = "SSID-password";
-const char* mqtt_server = "192.168.1.14";
+const char* password = "SSID-Password";
+const char* mqtt_server = "IP-address";
 const uint16_t mqtt_server_port = 1883;
 const char* mqttTopic = "Topic-name";
 const int detectionThreshold = 400;
