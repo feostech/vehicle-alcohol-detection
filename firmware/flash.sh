@@ -1,14 +1,18 @@
 #!/bin/bash
-# My Arduino sketch flashing script
+# Flashing script
 
-# Set the board and port (replace with your actual board and port)
-BOARD="arduino:avr:uno"
+ARDUINO_CLI=$HOME/bin/arduino-cli
+BOARD_REGEX='[[:alnum:]]\+:[[:alnum:]]\+:[-_[:alnum:]]\+'
+BOARD=$($ARDUINO_CLI board list | grep -o  $BOARD_REGEX)
 PORT="/dev/ttyACM0"
 
-# # Compile the sketch
-# arduino-cli compile --export-binaries -b $BOARD test/
+#Install Dependent libraries
+$ARDUINO_CLI lib install pubsubclient &&
+
+# Compile the sketch
+$ARDUINO_CLI compile  --export-binaries -b $BOARD . &&
 
 # Upload the compiled sketch to the board
-arduino-cli upload -p $PORT --fqbn $BOARD test/
+$ARDUINO_CLI upload -p $PORT --fqbn $BOARD .
  
 echo "Arduino flashed successfully!"
