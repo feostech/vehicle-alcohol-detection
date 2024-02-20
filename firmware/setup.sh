@@ -20,12 +20,10 @@ if [ $? -ne 0 ]; then
 fi
 
 # update the indices
-$ARDUINO_CLI core update-index --additional-urls=$ESP32_URL &&
-$ARDUINO_CLI core update-index --additional-urls=$ESP8266_URL &&
+$ARDUINO_CLI core update-index --additional-urls=$ESP32_URL,$ESP8266_URL &&
 
 #install the core for your board
-$ARDUINO_CLI core install esp32:esp32 --additional-urls=$ESP32_URL &&
-$ARDUINO_CLI core install esp8266:esp8266 --additional-urls=$ESP8266_URL &&
+$ARDUINO_CLI core install esp32:esp32 esp8266:esp8266 --additional-urls=$ESP32_URL,$ESP8266_URL &&
 
 #verify we have installed the core properly by running
 $ARDUINO_CLI core list &&
