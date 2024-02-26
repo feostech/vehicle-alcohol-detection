@@ -1,34 +1,31 @@
 #!/bin/bash
 
-set -e 
-
 ESP32_URL="https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json"
 ESP8266_URL="https://arduino.esp8266.com/stable/package_esp8266com_index.json"
+ARDUINO_CLI=$HOME/bin/arduino-cli
 
-#Install Arduino CLI
-cd /usr/bin/
-sudo apt-get install curl
+arduino_cli_setup ()
+{
+    sudo apt-get --yes install curl &&
+    pushd $HOME &&
+    curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh &&
+    echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc &&
+    $ARDUINO_CLI config init
+}
 
-#Add arduino-cli to the system path
-cd /home/usr/arduino-cli/
+# Check if arduino-cli tool is installed
+$ARDUINO_CLI version
+if [ $? -ne 0 ]; then
+    arduino_cli_setup
+fi
 
-#Verify the installation by running
-arduino-cli version
-
-#Create a configuration file
-arduino-cli config init
-
-# update the index
-arduino-cli core update-index --additional-urls=$ESP32_URL
-arduino-cli core update-index --additional-urls=$ESP8266_URL
+# update the indices
+$ARDUINO_CLI core update-index --additional-urls=$ESP32_URL,$ESP8266_URL &&
 
 #install the core for your board
-arduino-cli core install esp32:esp32
-arduino-cli core install esp8266:esp8266
+$ARDUINO_CLI core install esp32:esp32 esp8266:esp8266 --additional-urls=$ESP32_URL,$ESP8266_URL &&
 
 #verify we have installed the core properly by running
-arduino-cli core list
+$ARDUINO_CLI core list &&
 
 echo "Arduino setup completed!"
-
-

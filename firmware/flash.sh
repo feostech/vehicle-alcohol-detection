@@ -1,14 +1,18 @@
 #!/bin/bash
-# My Arduino sketch flashing script
+# Flashing script
 
-# Set the board and port (replace with your actual board and port)
-BOARD="arduino:avr:uno"
+set -x
+ARDUINO_CLI=$HOME/bin/arduino-cli
+BOARD_REGEX='[[:alnum:]]\+:[[:alnum:]]\+:[-_[:alnum:]]\+'
+BOARD=$($ARDUINO_CLI board list | grep -o  $BOARD_REGEX)
 PORT="/dev/ttyACM0"
+BOARD=$($ARDUINO_CLI board list | grep -o  $BOARD_REGEX) 
 
-# # Compile the sketch
-# arduino-cli compile --export-binaries -b $BOARD test/
+#If ESP8266 board not detected automatically, So we assign manual board name as ESP8266
+if [ "$BOARD" = "" ]; then
+	BOARD=ESP8266:ESP8266:ESP8266
+fi
+PORT="/dev/ttyUSB0"
 
-# Upload the compiled sketch to the board
-arduino-cli upload -p $PORT --fqbn $BOARD test/
- 
-echo "Arduino flashed successfully!"
+#Install Dependent libraries
+$ARDUINO_CLI lib install pubsubclient &&
