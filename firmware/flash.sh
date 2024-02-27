@@ -6,7 +6,7 @@ BOARD_REGEX='[[:alnum:]]\+:[[:alnum:]]\+:[-_[:alnum:]]\+'
 BOARD=$($ARDUINO_CLI board list | grep -o  $BOARD_REGEX)
 PORT="/dev/ttyACM0"
 
-#Install Dependent libraries
+# Install Dependent libraries
 $ARDUINO_CLI lib install pubsubclient &&
 
 # Compile the sketch
