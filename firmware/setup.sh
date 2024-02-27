@@ -1,6 +1,5 @@
 #!/bin/bash
 
-ESP32_URL="https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json"
 ESP8266_URL="https://arduino.esp8266.com/stable/package_esp8266com_index.json"
 ARDUINO_CLI=$HOME/bin/arduino-cli
 
@@ -20,10 +19,10 @@ if [ $? -ne 0 ]; then
 fi
 
 # update the indices
-$ARDUINO_CLI core update-index --additional-urls=$ESP32_URL,$ESP8266_URL &&
+$ARDUINO_CLI core update-index --additional-urls=$ESP8266_URL &&
 
 #install the core for your board
-$ARDUINO_CLI core install esp32:esp32 esp8266:esp8266 --additional-urls=$ESP32_URL,$ESP8266_URL &&
+$ARDUINO_CLI core install esp8266:esp8266 --additional-urls=$ESP8266_URL &&
 
 #verify we have installed the core properly by running
 $ARDUINO_CLI core list &&
