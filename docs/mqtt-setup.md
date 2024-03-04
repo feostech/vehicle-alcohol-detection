@@ -15,9 +15,7 @@ sudo apt-get install mosquitto-clients
 ```
 mosquitto or mosquitto -v 
 ```
-Takes the default conf file that are prebuild, but it won't work when the connection but it starts locally by using the default config.  
-
-First, I encountred with the Error which was saying that. The port is already in use but no problem. Configure the mosquitto.conf and restart the mosquitto then it solved. 
+ 
 ```
 systemctl restart mosquitto. services
 ```
@@ -39,7 +37,7 @@ The above sites has the config method to make the connection successfully.
 
 ### My mosquitto.conf file: 
 
-
+```
  #Place your local configuration in /etc/mosquitto/conf.d/ 
  
  
@@ -57,7 +55,7 @@ The above sites has the config method to make the connection successfully.
 
  listener 1883          
  allow_anonymous true
-
+```
  
 
 ## After configuring the file:
