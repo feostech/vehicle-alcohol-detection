@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EthanolDetection</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="register.css">
+
+
+</head>
+
+<body>
+  <div class="background-image">
+    <div class="transparent-box">
+      <form id="Mainform" class="w-75 m-4">
+        <h2 class="mb-3">Register User</h2>
+        <div class="form-floating mb-3">
+          <input type="username" class="form-control" id="usernameInp" placeholder="Username">
+          <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="emailInp" placeholder="name@example.com">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="passwordInp" placeholder="Password">
+          <label for="floatingInput">Password</label>
+        </div>
+        <div class="form-floating mb-3">
+          <button type="submit" class="btn btn-primary" style="float: right;">Create New User</button>
+          <button type="button" class="btn btn-primary" id="signInBtn" style="float: right; margin-right: 10px;">Sign
+            In</button>
+        </div>
+        <div class="hr"></div>
+        <div class="foot-lnk">
+          <a href="#forgot">Forgot Password?</a>
+        </div>
+      </form>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+      <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+          apiKey: "API_KEY"
+          authDomain: "AUTH",
+          projectId: "PROJECT_ID",
+          storageBucket: "STORAGE_BUCKET",
+          messagingSenderId: "MSG_SENDER_ID",
+          appId: "APP_ID"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+
+        const signInBtn = document.getElementById('signInBtn');
+
+        let UsernameInp = document.getElementById('usernameInp');
+        let EmailInp = document.getElementById('emailInp');
+        let PasswordInp = document.getElementById('passwordInp');
+        let MainForm = document.getElementById('Mainform');
+
+        let RegisterUser = evt => {
+          evt.preventDefault();
+
+          createUserWithEmailAndPassword(auth, EmailInp.value, PasswordInp.value)
+            .then((credentials) => {
+              console.log(credentials);
+            })
+            .catch((error) => {
+              alert(error.message);
+              console.log(error.code);
+              console.log(error.message);
+            })
+        }
+
+        MainForm.addEventListener('submit', RegisterUser);
+
+        signInBtn.addEventListener('click', function () {
+          window.location.href = '#';
+        });
+
+      </script>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EthanolDetection</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+    <div class="background-video">
+        <video autoplay muted loop>
+            <source src="#" type="video/webm">
+        </video>
+    </div>
+
+    <div class="main">
+        <div class="navbar">
+            <div class="menu">
+                <ul>
+                    <li><a href="#">ABOUT US</a></li>
+                    <li><a href="#">SIGNUP</a></li>
+                    <li><a href="#">CONTACT US</a></li>
+                </ul>
+            </div>
+
+            <div class="search">
+                <input class="srch" type="search" name="" placeholder="Type To text">
+                <a href="#"> <button class="btn">Search</button></a>
+            </div>
+
+        </div>
+        <div class="content">
+            <h1>Ethanol Detection & <br><span>Monitoring</span> <br>Site</h1>
+            <p class="par">This website serves as a crucial tool for detecting ethanol levels in various environments,
+                <br>With advanced sensor technology, It continuously monitors ethanol levels.<br> When
+                elevated levels of ethanol are detected,such as in the breath of a driver, <br>
+                the system triggers an immediate alert. This alert is designed to ensure driver safety and <br>
+                compliance with road rules and regulations.the website aims to prevent potential accidents <br>
+                caused by impaired driving due to alcohol consumption. The primary goal is to enhance <br>
+                road safety for drivers, passengers, and pedestrians alike. In this website the Authorized users only
+                <br>
+                able to access the Monitoring Dashboard.
+            </p>
+
+            <button class="cn"><a href="#">JOIN US</a></button>
+
+            <div class="form">
+                <h2>Login Here</h2>
+                <input type="email" class="form-control" id="emailInp" placeholder="name@example.com">
+                <input type="password" class="form-control" id="passwordInp" placeholder="Password">
+                <button type="button" class="btn btn-primary" id="loginBtn">Login</button>
+                <p class="link">Don't have an account<br>
+                    <a href="#">Sign up </a> here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, get, ref, child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "API_KEY",
+            authDomain: "AUTH",
+            projectId: "PROJECT_ID",
+            storageBucket: "STORAGE_BUCKET",
+            messagingSenderId: "MSG_SENDER_ID",
+            appId: "APP_ID"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+
+        const emailInp = document.getElementById('emailInp');
+        const passwordInp = document.getElementById('passwordInp');
+        const loginBtn = document.getElementById('loginBtn');
+
+        loginBtn.addEventListener('click', signInUser);
+
+        function signInUser() {
+            const email = emailInp.value;
+            const password = passwordInp.value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    console.log("User signed in:", userCredential.user);
+                    window.location.href = '#';
+                })
+                .catch((error) => {
+                    alert(error.message);
+                    console.error("Sign-in error:", error.code, error.message);
+                });
+        }
+    </script>
+</body>
+
+</html>
