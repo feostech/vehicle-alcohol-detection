@@ -12,18 +12,6 @@ sudo apt-get install mosquitto
 sudo apt-get install mosquitto-clients
 ```
  
-```
-mosquitto or mosquitto -v 
-```
- 
-```
-systemctl restart mosquitto. services
-```
-```
-mosquitto or mosquitto -v 
-```
-To check whether that error was coming or not. 
-
 ## Configuration methods: 
 
  
