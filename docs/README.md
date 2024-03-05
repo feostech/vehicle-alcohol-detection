@@ -13,22 +13,28 @@ Before running this script, ensure you have the following:
 ## Usage
 
 ### Download the Script
-Clone this repository or download the `./arduino_setup.sh` script file.
+Clone this repository or download the `./setup.sh` script file.
 
 ### Set Execution Permissions
 If needed, set execution permissions for the script:
->chmod +x arduino_setup.sh
-
+```
+chmod +x setup.sh
+```
 
 ### Run the Script
 Execute the script in your terminal:
-`./arduino_setup.sh`
+```
+./setup.sh
+```
 
 Follow the prompts as the script installs dependencies and sets up the Arduino CLI tool.
 
 ### Verify Installation
 Once the script completes, verify that the Arduino CLI tool and ESP8266 core are installed properly:
-`arduino-cli version` `arduino-cli core list`
+```
+arduino-cli version
+arduino-cli core list
+```
 
 
 ## Script Details
@@ -60,7 +66,9 @@ The script automates the process of flashing an Arduino board with a specified s
 1. Clone this repository to your local machine.
 2. Navigate to the cloned directory.
 3. Run the script with the following command:
-`./flashing_script.sh`
+```
+./flash.sh
+```
 
 The script will execute the following steps:
 - Detect the connected Arduino board.
@@ -72,7 +80,7 @@ The script will execute the following steps:
 
 ## Note
 
->>This script assumes a basic Linux environment and may require adjustments for specific distributions or configurations.
+>This script assumes a basic Linux environment and may require adjustments for specific distributions or configurations.
 
 ## Contributing
 
